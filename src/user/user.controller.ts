@@ -6,13 +6,13 @@ import { Controller, Get, Post } from '@nestjs/common';
  */
 @Controller('user')
 export class UserController {
-    @Post()
-    create(): Object {
-        return {};
-    }
+  @Post()
+  create(): Object {
+    return {};
+  }
 
-    @Get()
-    getUser(): Object {
-        return {};
-    }
+  @Get()
+  getUser(): Object {
+    return {};
+  }
 }
