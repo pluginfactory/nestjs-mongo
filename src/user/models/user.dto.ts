@@ -5,8 +5,8 @@ import { ApiProperty } from '@nestjs/swagger';
  * object model. It also define swagger model.
  */
 export class CreateUserDTO {
-  @ApiProperty()
-  readonly username: string;
-  @ApiProperty()
-  readonly firstName: string;
+	@ApiProperty()
+	readonly username: string;
+	@ApiProperty()
+	readonly firstName: string;
 }

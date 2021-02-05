@@ -1,12 +1,19 @@
-import { Schema } from 'mongoose';
-import { IUser } from './user.interface';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+import { GenericSchema } from 'src/core/interfaces/generic.schema';
 /**
  * this is the user schema that will define how the data will
  * be persisted into the database and how the user collections
  * will look like.
- *
  */
-export const UserSchema = new Schema({
-  username: { type: String },
-  firstName: { type: String },
-});
+
+@Schema()
+export class User extends GenericSchema {
+	@Prop()
+	username: string;
+	@Prop()
+	firstName: string;
+}
+
+export type UserDocument = User & Document;
+export const UserSchema = SchemaFactory.createForClass(User);

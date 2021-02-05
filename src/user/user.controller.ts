@@ -1,4 +1,5 @@
 import { Controller, Get, Post } from '@nestjs/common';
+import { User } from './models/user.schema';
 
 /**
  * This is the controller for user module and it will contain
@@ -6,13 +7,13 @@ import { Controller, Get, Post } from '@nestjs/common';
  */
 @Controller('user')
 export class UserController {
-  @Post()
-  create(): Object {
-    return {};
-  }
+	@Post()
+	create(): Partial<User> {
+		return {};
+	}
 
-  @Get()
-  getUser(): Object {
-    return {};
-  }
+	@Get()
+	getUser(): Partial<User> {
+		return {};
+	}
 }
