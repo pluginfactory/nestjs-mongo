@@ -1,8 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './models/user.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateUserDTO } from './models/user.dto';
+import { User, UserDocument } from './models/user.schema';
 @Injectable()
 export class UserService {
-	create(user: User): Partial<User> {
-		return {};
+	constructor(
+		@InjectModel(User.name) private userModel: Model<UserDocument>
+	) { }
+	/**
+	 * use this method to create a new user
+	 * @param {CreateUserDTO} user
+	 */
+	async create(user: CreateUserDTO): Promise<User> {
+		return this.userModel.create(user);
 	}
 }
