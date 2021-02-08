@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 // import { Document } from 'mongoose';
-import { GenericSchema } from 'src/core/interfaces/generic.schema';
+import { GenericSchema } from 'src/core/generics/generic.schema';
 /**
  * this is the user schema that will define how the data will
  * be persisted into the database and how the user collections

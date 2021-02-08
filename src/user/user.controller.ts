@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiQuery } from '@nestjs/swagger';
+import { APIQueryParam, IApiQuery } from 'src/core/generics/query';
 import { CreateUserDTO } from './models/user.dto';
 import { User } from './models/user.schema';
 import { UserService } from './user.service';
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
  */
 @Controller('user')
 export class UserController {
-	constructor(private readonly userService: UserService) { }
+	constructor(private readonly userService: UserService) {}
 
 	@Post()
 	@ApiBody({ type: CreateUserDTO })
@@ -19,7 +20,20 @@ export class UserController {
 	}
 
 	@Get()
-	async getUser(): Promise<Partial<User>> {
-		return {};
+	@ApiQuery({
+		name: 'filter',
+		schema: {
+			type: 'string',
+			example: {
+				where: { _id: '' },
+				pagination: { page: 1, limit: 100 },
+				sort: {}
+			}
+		}
+	})
+	getUser(
+		@APIQueryParam('filter') filter: IApiQuery<User>
+	): Promise<Array<User> | User> {
+		return this.userService.get(filter);
 	}
 }
